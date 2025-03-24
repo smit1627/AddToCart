@@ -67,12 +67,31 @@ function handleCart(id) {
 }
 
 function handleDescription(id) {
-    console.log(id);
+    const data = JSON.parse(localStorage.getItem("productData"));
+    const product = data[id];
 
-}
+    // Populate modal with product details
+    document.getElementById("modalProductImage").src = product.thumbnail;
+    document.getElementById("modalProductTitle").textContent = product.title;
+    document.getElementById("modalProductDescription").textContent = product.description;
+    document.getElementById("modalProductPrice").textContent = `$${product.price}`;
+    document.getElementById("modalProductRating").textContent = `${product.rating} / 5`;
+    document.getElementById("modalProductWarranty").textContent = product.warranty || "1 Year Warranty";
+    document.getElementById("modalProductDiscount").textContent = `${product.discountPercentage}% Off`;
+    document.getElementById("modalProductReturnPolicy").textContent = product.returnPolicy || "30 Days Return Policy";
 
-function closeModal() {
-    document.getElementById('productModal').style.display = 'none';
+    // Handle Add to Cart button
+    const addToCartButton = document.getElementById("modalAddToCart");
+    addToCartButton.onclick = () => handleCart(id);
+
+    // Handle Buy Now button
+    const buyNowButton = document.getElementById("modalBuyNow");
+    buyNowButton.onclick = () => {
+        alert("Redirecting to checkout...");
+    };
+
+    const productModal = new bootstrap.Modal(document.getElementById("productModal"));
+    productModal.show();
 }
 
 // Function to update cart count
@@ -96,18 +115,4 @@ document.addEventListener("DOMContentLoaded", updateCartCount);
 window.onload = function () {
     datafn();
 };
-
-function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-    const mode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-    localStorage.setItem('theme', mode);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-    }
-});
-
 

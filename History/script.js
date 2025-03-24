@@ -68,3 +68,31 @@ function handleCart(id) {
     show()
     location.reload()
 }
+
+function handleDescription(id) {
+    const data = JSON.parse(localStorage.getItem("productData"));
+    const product = data[id];
+
+    // Populate modal with product details
+    document.getElementById("modalProductImage").src = product.thumbnail;
+    document.getElementById("modalProductTitle").textContent = product.title;
+    document.getElementById("modalProductDescription").textContent = product.description;
+    document.getElementById("modalProductPrice").textContent = `$${product.price}`;
+    document.getElementById("modalProductRating").textContent = `${product.rating} / 5`;
+    document.getElementById("modalProductWarranty").textContent = product.warranty || "1 Year Warranty";
+    document.getElementById("modalProductDiscount").textContent = `${product.discountPercentage}% Off`;
+    document.getElementById("modalProductReturnPolicy").textContent = product.returnPolicy || "30 Days Return Policy";
+
+    // Handle Add to Cart button
+    const addToCartButton = document.getElementById("modalAddToCart");
+    addToCartButton.onclick = () => handleCart(id);
+
+    // Handle Buy Now button
+    const buyNowButton = document.getElementById("modalBuyNow");
+    buyNowButton.onclick = () => {
+        alert("Redirecting to checkout...");
+    };
+
+    const productModal = new bootstrap.Modal(document.getElementById("productModal"));
+    productModal.show();
+}

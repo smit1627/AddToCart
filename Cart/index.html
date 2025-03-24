@@ -155,6 +155,10 @@
             color: #6c757d;
         }
 
+        .modal-body {
+            padding: 0;
+        }
+
         /* Row2 Section */
         .row2 {
             margin-top: 20px;
@@ -374,6 +378,48 @@
     <footer class="footer-container">
         <p>© 2025 Product Dashboard. All Rights Reserved.</p>
     </footer>
+
+    <!-- Product Details Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">Product Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img id="modalProductImage" src="" class="img-fluid rounded" alt="Product Image">
+                        </div>
+                        <div class="col-md-6">
+                            <h4 id="modalProductTitle"></h4>
+                            <p id="modalProductDescription"></p>
+                            <h5 class="text-success" id="modalProductPrice"></h5>
+                            <p><strong>Rating:</strong> <span id="modalProductRating"></span></p>
+                            <p><strong>Warranty:</strong> <span id="modalProductWarranty"></span></p>
+                            <p><strong>Discount:</strong> <span id="modalProductDiscount"></span></p>
+                            <p><strong>Return Policy:</strong> <span id="modalProductReturnPolicy"></span></p>
+                            <div class="d-flex gap-2 mt-3 py-4">
+                                <button class="btn btn-outline-success w-50" id="modalAddToCart">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
+                                <button class="btn btn-outline-primary w-50" id="modalBuyNow">
+                                    <i class="fas fa-shopping-bag"></i> Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <hr>
+                    <h5>Reviews</h5>
+                    <ul id="modalProductReviews" class="list-unstyled">
+                        Reviews will be dynamically added here
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="script.js"></script>
     <!-- Bootstrap Bundle -->
