@@ -1,5 +1,8 @@
+const loader = document.querySelector(".loader")
 
 function show() {
+    loader.style.display = "flex";
+
     const data = JSON.parse(localStorage.getItem('cartData'))
     console.log(data);
 
@@ -9,7 +12,7 @@ function show() {
                         <div class="col">
                     <div class="card shadow-lg border-0">
                         <!-- Product Image -->
-                        <img src="${product.image}" class="card-img-top" alt="${product.title}">
+                        <img src="${product.thumbnail}" class="card-img-top" alt="${product.title}">
 
                         <div class="card-body d-flex flex-column justify-content-between">
                             <!-- Product Title -->
@@ -51,6 +54,7 @@ function show() {
 
     document.querySelector(".row2").innerHTML = result;
     // console.log(data);
+    loader.style.display = "none";
 }
 
 show()

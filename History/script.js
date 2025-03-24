@@ -1,11 +1,14 @@
+const loader = document.querySelector(".loader")
+
 function show() {
+    loader.style.display = "flex";
     const removedData = JSON.parse(localStorage.getItem('removedData'))
     let result = ""
     removedData.map((product, index) => {
         result += `
                         <div class="col">
                     <div class="card shadow-lg border-0">
-                        <img src="${product.image}" class="card-img-top" alt="${product.title}">
+                        <img src="${product.thumbnail}" class="card-img-top" alt="${product.title}">
 
                         <div class="card-body d-flex flex-column justify-content-between">
                             <h5 class="card-title text-truncate" title="${product.title}">
@@ -41,6 +44,27 @@ function show() {
                     `;
     });
     document.querySelector(".row2").innerHTML = result;
+    loader.style.display = "none";
 }
 
 show()
+
+function handlePermanentRemove(id) {
+    console.log(id);
+    const removedData = JSON.parse(localStorage.getItem("removedData"))
+    removedData.splice(id, 1)
+    localStorage.setItem("removedData", JSON.stringify(removedData))
+    show()
+    location.reload()
+}
+
+function handleCart(id) {
+    const removedData = JSON.parse(localStorage.getItem("removedData"))
+    const cartData = JSON.parse(localStorage.getItem("cartData")) || []
+    cartData.push(removedData[id])
+    localStorage.setItem("cartData", JSON.stringify(cartData))
+    removedData.splice(id, 1)
+    localStorage.setItem("removedData", JSON.stringify(removedData))
+    show()
+    location.reload()
+}
