@@ -10,6 +10,8 @@ const datafn = async function () {
         // console.log(result);
         const data = await result.json()
         const productData = data.products
+        console.log(productData);
+
         // console.log(data);
         localStorage.setItem("productData", JSON.stringify(productData))
         show()
@@ -35,13 +37,14 @@ function show() {
                         <span class="price-tag">$${product.price}</span>
                         <span class="badge bg-primary">In Stock</span>
                     </div>
-                    <div class="d-flex gap-2">
+                    <div class="d-flex gap-2 modal-body">
                         <button class="btn btn-outline-success btn-sm btn-custom w-50 d-flex align-items-center justify-content-center gap-1" onclick="handleCart(${index})">
                             <i class="fas fa-cart-plus"></i> Add
                         </button>
-                        <button class="btn btn-outline-info btn-sm btn-custom w-50 d-flex align-items-center justify-content-center gap-1" onclick="handleDescription(${index})">
+                 
+                        <button type="button" class="btn btn-outline-info btn-sm btn-custom w-50 d-flex align-items-center justify-content-center gap-1" onclick="handleDescription(${index})" >
                             <i class="fas fa-info-circle"></i> Details
-                        </button>
+                        </button>            
                     </div>
                 </div>
             </div>
@@ -65,6 +68,11 @@ function handleCart(id) {
 
 function handleDescription(id) {
     console.log(id);
+
+}
+
+function closeModal() {
+    document.getElementById('productModal').style.display = 'none';
 }
 
 // Function to update cart count
@@ -101,3 +109,5 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('dark-mode');
     }
 });
+
+

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Modal - Without Wishlist</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for stars -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .product-image {
+            max-height: 320px;
+            object-fit: contain;
+            border-radius: 1rem;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #dc3545;
+            color: white;
+            font-weight: 600;
+            padding: 6px 10px;
+            border-radius: 1rem;
+            z-index: 10;
+        }
+
+        .rating-stars {
+            color: #ffc107;
+        }
+
+        .product-info-section {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #6c757d;
+        }
+
+        .modal-product-title {
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: #212529;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #28a745;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #6c757d;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            padding: 12px 18px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            background-color: #0d6efd;
+            color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .btn-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .d-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .modal-body .col {
+            flex: 1 1 50%;
+            padding: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Button to trigger modal -->
+    <div class="container mt-5 text-center">
+        <button onclick="openModal()" class="btn btn-primary shadow-sm rounded-pill px-3 py-2">
+            View Product Details
+        </button>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="btn-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="col position-relative">
+                    <span class="discount-badge">20% OFF</span>
+                    <img src="/api/placeholder/400/300" alt="Product Image" class="img-fluid product-image w-100">
+                </div>
+
+                <div class="col">
+                    <h3 class="modal-product-title">Premium Wireless Headphones</h3>
+
+                    <!-- Rating -->
+                    <div class="product-info-section">
+                        <div class="rating-stars mb-1">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span class="ms-2 text-muted">4.5/5 (120 reviews)</span>
+                        </div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="product-info-section d-flex align-items-center gap-2">
+                        <span class="product-price">$159.99</span>
+                        <span class="original-price">$199.99</span>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="product-info-section">
+                        <p>High-quality wireless headphones with noise cancellation technology, Bluetooth 5.0, and up to
+                            30 hours of battery life. Perfect for music lovers and professionals alike.</p>
+                    </div>
+
+                    <!-- Warranty & Return Policy -->
+                    <div class="product-info-section">
+                        <p><span class="info-label">Warranty:</span> 2-year limited manufacturer warranty</p>
+                        <p><span class="info-label">Return Policy:</span> 30-day money-back guarantee</p>
+                    </div>
+
+                    <!-- Call to Action -->
+                    <div class="d-grid">
+                        <button
+                            class="btn btn-primary shadow-sm rounded-pill px-3 py-2 d-flex align-items-center justify-content-center gap-2">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('productModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+    </script>
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js">
+    </script>
+
+</body>
+
+</html>
