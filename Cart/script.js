@@ -28,8 +28,8 @@ function show() {
                             <!-- Price and Stock Badge -->
                             <div class="d-flex align-items-center justify-content-between mb-3">
                                 <span class="price-tag">$${product.price}</span>
-                                <span class="badge ${product.rating.count > 0 ? 'bg-success' : 'bg-danger'}">
-                                    ${product.rating.count > 0 ? 'In Stock' : 'Out of Stock'}
+                                <span class="badge ${product.stock > 0 ? 'bg-success' : 'bg-danger'}">
+                                    ${product.stock > 0 ? 'In Stock' : 'Out of Stock'}
                                 </span>
                             </div>
 

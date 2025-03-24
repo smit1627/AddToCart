@@ -17,9 +17,11 @@ function show() {
                             <p class="card-text text-truncate" title="${product.description}">
                                 ${product.description}
                             </p>
-                            <div class="d-flex align-items-center justify-content-between mb-3">
+                           <div class="d-flex align-items-center justify-content-between mb-3">
                                 <span class="price-tag">$${product.price}</span>
-                                <span class="badge">In Stock</span>
+                                <span class="badge ${product.stock > 0 ? 'bg-success' : 'bg-danger'}">
+                                    ${product.stock > 0 ? 'In Stock' : 'Out of Stock'}
+                                </span>
                             </div>
                             <div class="d-flex gap-2">
                                 <button
