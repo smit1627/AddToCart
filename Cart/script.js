@@ -3,7 +3,7 @@ const loader = document.querySelector(".loader")
 function show() {
     loader.style.display = "flex";
 
-    const data = JSON.parse(localStorage.getItem('cartData'))
+    const data = JSON.parse(localStorage.getItem('cartData')) || []
     console.log(data);
 
     let result = ""

@@ -19,6 +19,10 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@400;700&display=swap">
 
+    <!-- TailWind CSS -->
+    <!-- Tailwind CSS Link -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+
     <style>
         body {
             background-color: #f8f9fa;
@@ -245,6 +249,103 @@
                 animation-timing-function: ease-in;
             }
         }
+
+        /* Alert Container */
+        #custom-alert {
+            position: fixed;
+            top: 85px;
+            /* Increased from 20px to 50px */
+            left: 57.5%;
+            transform: translateX(-50%);
+            width: auto;
+            min-width: 280px;
+            max-width: 450px;
+            z-index: 9999;
+        }
+
+
+        /* Alert Box Style */
+        #alert-box {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            background-color: #22c55e;
+            color: #fff;
+            font-size: 1rem;
+            border-radius: 50px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Icon Style */
+        .alert-icon {
+            width: 28px;
+            height: 28px;
+            margin-right: 12px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .alert-icon svg {
+            width: 16px;
+            height: 16px;
+            color: #22c55e;
+        }
+
+        /* Alert Message */
+        .alert-content {
+            font-weight: 500;
+            flex-grow: 1;
+        }
+
+        /* Close Button */
+        .alert-close {
+            font-size: 1.2rem;
+            margin-left: 12px;
+            cursor: pointer;
+            color: #fff;
+            transition: transform 0.2s ease;
+        }
+
+        .alert-close:hover {
+            transform: scale(1.1);
+        }
+
+        /* Show & Hide Animations */
+        .show-alert {
+            animation: slideDownFade 0.3s ease-out forwards;
+        }
+
+        .hide-alert {
+            animation: slideUpFade 0.3s ease-in forwards;
+        }
+
+        @keyframes slideDownFade {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        @keyframes slideUpFade {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -20px);
+            }
+        }
     </style>
 </head>
 
@@ -280,14 +381,14 @@
                     <span class="d-none d-md-inline text-white fw-semibold">History</span>
                 </a>
                 <!-- Register Button -->
-                <a href="../Auth/register.html"
+                <a href="../Authentication/Register/index.html"
                     class="btn btn-outline-primary btn-lg d-flex align-items-center gap-2 shadow-sm rounded-pill px-3">
                     <i class="fas fa-user-plus text-primary fs-5"></i>
                     <span class="d-none d-md-inline fw-semibold">Register</span>
                 </a>
 
                 <!-- Login Button -->
-                <a href="../Auth/login.html"
+                <a href="../Authentication/Login/index.html"
                     class="btn btn-primary btn-lg d-flex align-items-center gap-2 shadow-sm rounded-pill px-3">
                     <i class="fas fa-sign-in-alt text-white fs-5"></i>
                     <span class="d-none d-md-inline text-white fw-semibold">Login</span>
@@ -352,6 +453,30 @@
         </div>
     </div>
 
+    <!-- Custom Alert Component
+    <div id="custom-alert"
+        class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 hidden transition ease-out duration-300"
+        style="z-index: 9999;">
+        <div id="alert-box"
+            class="flex items-center justify-between px-5 py-3 max-w-sm w-full bg-white border-l-4 rounded-2xl shadow-lg opacity-0 -translate-y-2">
+            <div class="flex items-center space-x-3">
+                <div id="alert-icon" class="text-lg"></div>
+                <p id="alert-message" class="text-sm font-medium text-gray-700"></p>
+            </div>
+            <button onclick="closeAlert()"
+                class="text-gray-400 hover:text-gray-600 transition duration-200 focus:outline-none ml-4 text-lg">
+                ✕
+            </button>
+        </div>
+    </div> -->
+
+    <div id="custom-alert" class="hidden">
+        <div id="alert-box">
+            <div class="alert-icon" id="alert-icon"></div>
+            <div class="alert-content" id="alert-message">Success Message</div>
+            <div class="alert-close" onclick="closeAlert()">×</div>
+        </div>
+    </div>
     <script src="script.js"></script>
 
     <!-- FontAwesome Icons for Buttons -->
