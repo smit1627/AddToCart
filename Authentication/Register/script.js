@@ -32,33 +32,34 @@ form.addEventListener("submit", function (e) {
 
     console.log(firstName, lastName, email, password, confirmPassword);
 
+    if (password === confirmPassword) {
+        // Create user object
+        const user = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+            status: "inactive"
+        };
 
-    if (password == confirmPassword) {
-        function createUser(firstName, lastName, email, password, confirmPassword) {
+        // Get users from localStorage or create an empty array
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        users.push(user);
 
-            const user = {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                password: password,
-                confirmPassword: confirmPassword
-            }
-            return user
-        }
+        // Save updated users list to localStorage
+        localStorage.setItem("users", JSON.stringify(users));
+
+        showAlert("success", "User registered successfully");
+
+        // Redirect after a slight delay to ensure data is saved
+        setTimeout(function () {
+            window.location.href = "../Login/index.html";
+        }, 500); // Delay to ensure data is saved properly
     } else {
         showAlert("error", "Passwords do not match");
     }
-
-    // console.log(createUser(firstName, lastName, email, password, confirmPassword));
-    const user = createUser(firstName, lastName, email, password, confirmPassword);
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    users.push(user);
-    localStorage.setItem("users", JSON.stringify(users));
-    showAlert("success", "User registered successfully");
-    window.location.href = "../Login/index.html";
-    form.reset();
-
 });
+
 
 function showAlert(type, message) {
     const alertBox = document.getElementById("custom-alert");

@@ -6,9 +6,37 @@ form.addEventListener("submit", function (e) {
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
     const user = users.find(user => user.email === email && user.password === password);
+    console.log(user, "user");
+
+    // checking if user is registered
     if (user) {
-        showAlert("success", "User logged in successfully");
-        window.location.href = "../../Home/index.html";
+        // console.log(user.firstName, "user");
+
+        const currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
+        // creating current user credential
+        const currentUserCredential = {
+            firstName: user.firstName,
+            email: email,
+            password: password
+        }
+
+        // checking if user already logged in
+        const currentUserData = currentUser.find(user => user.email === email && user.password === password);
+        // console.log(currentUserData, "currentUserData");
+        if (currentUserData) {
+            showAlert("error", "User already logged in");
+        } else {
+
+            // saving current user credential in local storage
+            currentUser.push(currentUserCredential);
+            localStorage.setItem("currentUser", JSON.stringify(currentUser));
+            showAlert("success", "User logged in successfully");
+
+            // Redirect after a slight delay to ensure data is saved
+            setTimeout(function () {
+                window.location.href = "../../Home/index.html";
+            }, 500);
+        }
     } else {
         showAlert("error", "Invalid credentials");
     }

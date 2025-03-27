@@ -10,7 +10,7 @@ const datafn = async function () {
         // console.log(result);
         const data = await result.json()
         const productData = data.products
-        console.log(productData);
+        // console.log(productData);
 
         // console.log(data);
         localStorage.setItem("productData", JSON.stringify(productData))
@@ -98,8 +98,7 @@ function handleDescription(id) {
 function updateCartCount() {
     let cartCountElement = document.getElementById("cart-count");
     const cartData = JSON.parse(localStorage.getItem("cartData")) || []
-    let itemCount;
-    itemCount = cartData.length;
+    let itemCount = cartData.length;
 
     if (cartData == null || itemCount === 0) {
         cartCountElement.style.display = "none";
