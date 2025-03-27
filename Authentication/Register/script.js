@@ -39,7 +39,7 @@ form.addEventListener("submit", function (e) {
             lastName: lastName,
             email: email,
             password: password,
-            status: "inactive"
+            status: "Inactive"
         };
 
         // Get users from localStorage or create an empty array

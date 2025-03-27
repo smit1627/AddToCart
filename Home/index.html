@@ -84,8 +84,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item custom-dropdown-item logout-item"
-                                        href="../Authentication/Logout/index.html">
+                                    <a class="dropdown-item custom-dropdown-item logout-item " href="#"
+                                        data-bs-toggle="modal" data-bs-target="#logoutModal" id="logout">
                                         <i class="fas fa-sign-out-alt me-2 text-danger"></i>Logout
                                     </a>
                                 </li>
@@ -193,6 +193,26 @@
             <div class="alert-close" onclick="closeAlert()">×</div>
         </div>
     </div>
+
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to log out? Any unsaved changes will be lost.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="logout-button" onclick="handleLogout()">Confirm
+                        Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 
     <!-- FontAwesome Icons for Buttons -->

@@ -500,3 +500,79 @@ body {
         padding: 10px;
     }
 }
+
+/* Logout Modal Custom Styling */
+#logoutModal .modal-content {
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}
+
+#logoutModal .modal-header {
+    background-color: #007bff;
+    border-bottom: 1px solid #e9ecef;
+    color: #fff;
+    font-weight: 700;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+#logoutModal .modal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+#logoutModal .modal-body {
+    font-size: 1rem;
+    color: #495057;
+    padding: 1.5rem;
+    text-align: center;
+    background-color: #f8f9fa;
+    border-radius: 0 0 1rem 1rem;
+}
+
+#logoutModal .modal-footer {
+    border-top: 1px solid #e9ecef;
+    padding: 1rem;
+    justify-content: center;
+    background-color: #f8f9fa;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+/* Updated Cancel Button (Secondary) */
+#logoutModal .btn-secondary {
+    background: linear-gradient(135deg, #e0e0e0, #cfcfcf);
+    border: none;
+    color: #333;
+    border-radius: 0.75rem;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+#logoutModal .btn-secondary:hover {
+    background: linear-gradient(135deg, #d6d6d6, #bfbfbf);
+    color: #000;
+    transform: scale(1.03);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Updated Confirm Button (Danger) */
+#logoutModal .btn-danger {
+    background: red;
+    border: none;
+    color: #fff;
+    border-radius: 0.75rem;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+#logoutModal .btn-danger:hover {
+    background: red;
+    transform: scale(1.03);
+    box-shadow: 0 8px 15px rgba(255, 75, 92, 0.2);
+}

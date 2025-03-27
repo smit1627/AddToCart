@@ -187,3 +187,20 @@ function closeAlert() {
     }, 300);
 }
 
+function handleLogout() {
+    const logoutButton = document.getElementById("logout-button");
+    const users = JSON.parse(localStorage.getItem("users")) || []
+    const currentUser = JSON.parse(localStorage.getItem("currentUser")) || []
+    const user = users.find(user => user.status === "active");
+    if (user) {
+        // localStorage.removeItem("user");
+        user.status = "inactive";
+        localStorage.setItem("users", JSON.stringify(users));
+        currentUser.splice(0, 1)
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        // Redirect to login page
+        window.location.href = "../Authentication/Login/index.html";
+    }
+}
+
+
