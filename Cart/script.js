@@ -4,7 +4,7 @@ function show() {
     loader.style.display = "flex";
 
     const data = JSON.parse(localStorage.getItem('cartData')) || []
-    console.log(data);
+    // console.log(data);
 
     let result = ""
     data.map((product, index) => {
@@ -60,7 +60,7 @@ function show() {
 show()
 
 function handleRemove(id) {
-    const cartData = JSON.parse(localStorage.getItem('cartData'))
+    const cartData = JSON.parse(localStorage.getItem('cartData')) || []
     const removedData = JSON.parse(localStorage.getItem("removedData")) || []
     removedData.push(cartData[id])
     localStorage.setItem("removedData", JSON.stringify(removedData))
@@ -71,7 +71,7 @@ function handleRemove(id) {
 }
 
 function totalPrice() {
-    const data = JSON.parse(localStorage.getItem('cartData'))
+    const data = JSON.parse(localStorage.getItem('cartData')) || []
     var totalPrice = 0
     data.map((product) => {
         totalPrice += parseFloat(product.price)
@@ -123,3 +123,17 @@ function handleDescription(id) {
     const productModal = new bootstrap.Modal(document.getElementById("productModal"));
     productModal.show();
 }
+
+function loginCheck() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser")) || []
+    const authButtons = document.getElementById("auth-buttons")
+
+    // console.log(currentUser);
+    if (currentUser.length > 0) {
+        authButtons.style.display = "none"
+    } else {
+        authButtons.style.display = "flex"
+    }
+
+}
+loginCheck()

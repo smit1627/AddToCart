@@ -53,7 +53,7 @@ show()
 
 function handlePermanentRemove(id) {
     console.log(id);
-    const removedData = JSON.parse(localStorage.getItem("removedData"))
+    const removedData = JSON.parse(localStorage.getItem("removedData")) || []
     removedData.splice(id, 1)
     localStorage.setItem("removedData", JSON.stringify(removedData))
     show()
@@ -61,7 +61,7 @@ function handlePermanentRemove(id) {
 }
 
 function handleCart(id) {
-    const removedData = JSON.parse(localStorage.getItem("removedData"))
+    const removedData = JSON.parse(localStorage.getItem("removedData")) || []
     const cartData = JSON.parse(localStorage.getItem("cartData")) || []
     cartData.push(removedData[id])
     localStorage.setItem("cartData", JSON.stringify(cartData))
@@ -72,7 +72,7 @@ function handleCart(id) {
 }
 
 function handleDescription(id) {
-    const data = JSON.parse(localStorage.getItem("productData"));
+    const data = JSON.parse(localStorage.getItem("productData")) || []
     const product = data[id];
 
     // Populate modal with product details
@@ -172,3 +172,19 @@ function closeAlert() {
         alertInnerBox.classList.remove("hide-alert");
     }, 300);
 }
+
+function loginCheck() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser")) || []
+    const authButtons = document.getElementById("auth-buttons")
+
+    console.log(currentUser);
+    if (currentUser.length > 0) {
+        authButtons.style.display = "none"
+    } else {
+        authButtons.style.display = "flex"
+        console.log(authButtons);
+
+    }
+
+}
+loginCheck()

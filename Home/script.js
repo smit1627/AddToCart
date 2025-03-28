@@ -23,7 +23,7 @@ const datafn = async function () {
 datafn()
 
 function show() {
-    const data = JSON.parse(localStorage.getItem("productData"))
+    const data = JSON.parse(localStorage.getItem("productData")) || []
     let result = ""
     data.map((product, index) => {
         result += `
@@ -56,7 +56,7 @@ function show() {
 }
 
 function handleCart(id) {
-    const data = JSON.parse(localStorage.getItem('productData'))
+    const data = JSON.parse(localStorage.getItem('productData')) || []
     const cartData = JSON.parse(localStorage.getItem("cartData")) || []
     cartData.push(data[id])
     localStorage.setItem("cartData", JSON.stringify(cartData))
@@ -67,7 +67,7 @@ function handleCart(id) {
 }
 
 function handleDescription(id) {
-    const data = JSON.parse(localStorage.getItem("productData"));
+    const data = JSON.parse(localStorage.getItem("productData")) || []
     const product = data[id];
 
     // Populate modal with product details
@@ -203,4 +203,29 @@ function handleLogout() {
     }
 }
 
+function loginCheck() {
+    const users = JSON.parse(localStorage.getItem("users")) || []
+    const currentUser = JSON.parse(localStorage.getItem("currentUser")) || []
+    const userInfo = document.getElementById("user-info")
+    const authButtons = document.getElementById("auth-buttons")
+    const userName = document.getElementById("user-name")
+    // console.log(currentUser);
+    if (currentUser.length > 0) {
+        currentUser.forEach(user => {
+            const currentUserEmail = user.email
+            const currentUserPassword = user.password
+            console.log(currentUserEmail, currentUserPassword);
+            let currenUserData = users.find(user => user.email === currentUserEmail && user.password === currentUserPassword && user.status === "active")
+            userName.innerText = currenUserData.firstName
+        });
 
+        userInfo.style.display = "flex"
+        authButtons.style.display = "none"
+
+    } else {
+        userInfo.style.display = "none"
+        authButtons.style.display = "flex"
+    }
+
+}
+loginCheck()
