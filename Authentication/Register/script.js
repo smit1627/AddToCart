@@ -18,9 +18,8 @@ function toggleConfirmPassword() {
     eyeIconConfirm.classList.add(type === "text" ? "fa-eye" : "fa-eye-slash");
     eyeIconConfirm.classList.remove(type === "text" ? "fa-eye-slash" : "fa-eye");
 }
-
 const form = document.getElementById("register-form");
-// const users = JSON.parse(localStorage.getItem("users")) || [];
+const users = JSON.parse(localStorage.getItem("users")) || [];
 form.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -30,33 +29,35 @@ form.addEventListener("submit", function (e) {
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirm-password").value;
 
-    console.log(firstName, lastName, email, password, confirmPassword);
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const sameEmail = users.some(user => user.email === email)
+    console.log(sameEmail);
 
-    if (password === confirmPassword) {
-        // Create user object
-        const user = {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password,
-            status: "Inactive"
-        };
-
-        // Get users from localStorage or create an empty array
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-        users.push(user);
-
-        // Save updated users list to localStorage
-        localStorage.setItem("users", JSON.stringify(users));
-
-        showAlert("success", "User registered successfully");
-
-        // Redirect after a slight delay to ensure data is saved
-        setTimeout(function () {
-            window.location.href = "../Login/index.html";
-        }, 500); // Delay to ensure data is saved properly
+    if (sameEmail === true) {
+        showAlert("error", "User already Registerd")
     } else {
-        showAlert("error", "Passwords do not match");
+
+        if (password === confirmPassword) {
+            const user = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password,
+                status: "Inactive"
+            };
+
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+            users.push(user);
+            localStorage.setItem("users", JSON.stringify(users));
+
+            showAlert("success", "User registered successfully");
+
+            setTimeout(function () {
+                window.location.href = "../Login/index.html";
+            }, 500);
+        } else {
+            showAlert("error", "Passwords do not match");
+        }
     }
 });
 
