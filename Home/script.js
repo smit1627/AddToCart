@@ -7,14 +7,10 @@ const datafn = async function () {
         loader.style.display = "flex";
         JSON.parse(localStorage.getItem("productData")) || []
         const result = await fetch(url)
-        // console.log(result);
         const data = await result.json()
         const productData = data.products
-        // console.log(productData);
-
-        // console.log(data);
         localStorage.setItem("productData", JSON.stringify(productData))
-        show()
+        show(productData)
         loader.style.display = "none";
     } catch (error) {
         console.log(error);
@@ -22,8 +18,8 @@ const datafn = async function () {
 }
 datafn()
 
-function show() {
-    const data = JSON.parse(localStorage.getItem("productData")) || []
+function show(data) {
+    // const data = JSON.parse(localStorage.getItem("productData")) || []
     let result = ""
     data.map((product, index) => {
         result += `
@@ -54,6 +50,16 @@ function show() {
     document.querySelector(".row2").innerHTML = result;
     // console.log(data);
 }
+
+document.getElementById('search').addEventListener('input', function () {
+    let filter = this.value.toLowerCase();
+    let products = JSON.parse(localStorage.getItem("productData")) || [];
+
+    let filteredProducts = products.filter(product => product.title.toLowerCase().includes(filter));
+    console.log(filteredProducts, "filtered products");
+
+    show(filteredProducts);
+});
 
 function handleCart(id) {
     const data = JSON.parse(localStorage.getItem('productData')) || []
@@ -229,3 +235,16 @@ function loginCheck() {
 
 }
 loginCheck()
+document.getElementById('search').addEventListener('input', function () {
+    let filter = this.value.toLowerCase();
+    let items = document.querySelectorAll('#itemList li');
+
+    items.forEach(item => {
+        let text = item.textContent.toLowerCase();
+        if (text.includes(filter)) {
+            item.classList.remove('hidden');
+        } else {
+            item.classList.add('hidden');
+        }
+    });
+});
