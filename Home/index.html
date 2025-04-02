@@ -79,7 +79,7 @@
                             <ul class="dropdown-menu dropdown-menu-end custom-dropdown shadow-sm p-2"
                                 aria-labelledby="dropdownMenuButton">
                                 <li>
-                                    <a class="dropdown-item custom-dropdown-item" href="../Profile/index.html">
+                                    <a class="dropdown-item custom-dropdown-item" href="#">
                                         <i class="fas fa-user me-2 text-secondary"></i>Profile
                                     </a>
                                 </li>
@@ -142,13 +142,14 @@
                             <img id="modalProductImage" src="" class="img-fluid rounded" alt="Product Image">
                         </div>
                         <div class="col-md-6">
-                            <h4 id="modalProductTitle"></h4>
-                            <p id="modalProductDescription"></p>
-                            <h5 class="text-success" id="modalProductPrice"></h5>
-                            <p><strong>Rating:</strong> <span id="modalProductRating"></span></p>
-                            <p><strong>Warranty:</strong> <span id="modalProductWarranty"></span></p>
-                            <p><strong>Discount:</strong> <span id="modalProductDiscount"></span></p>
-                            <p><strong>Return Policy:</strong> <span id="modalProductReturnPolicy"></span></p>
+                            <h4 id="modalProductTitle" class="fs-3 fw-bold pb-3"></h4>
+                            <p id="modalProductDescription" class="pb-5"></p>
+                            <h5 class="text-success pb-2" id="modalProductPrice"></h5>
+                            <p class="pb-2"><strong>Rating:</strong> <span id="modalProductRating"></span></p>
+                            <p class="pb-2"><strong>Warranty:</strong> <span id="modalProductWarranty"></span></p>
+                            <p class="pb-2"><strong>Discount:</strong> <span id="modalProductDiscount"></span></p>
+                            <p><strong>Return Policy:</strong> <span id="modalProductReturnPolicy"></span>
+                            </p>
                             <div class="d-flex gap-2 mt-3 py-4">
                                 <button class="btn btn-outline-success w-50" id="modalAddToCart">
                                     <i class="fas fa-cart-plus"></i> Add to Cart
@@ -159,32 +160,10 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <hr>
-                    <h5>Reviews</h5>
-                    <ul id="modalProductReviews" class="list-unstyled">
-                        Reviews will be dynamically added here
-                    </ul> -->
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Custom Alert Component
-    <div id="custom-alert"
-        class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 hidden transition ease-out duration-300"
-        style="z-index: 9999;">
-        <div id="alert-box"
-            class="flex items-center justify-between px-5 py-3 max-w-sm w-full bg-white border-l-4 rounded-2xl shadow-lg opacity-0 -translate-y-2">
-            <div class="flex items-center space-x-3">
-                <div id="alert-icon" class="text-lg"></div>
-                <p id="alert-message" class="text-sm font-medium text-gray-700"></p>
-            </div>
-            <button onclick="closeAlert()"
-                class="text-gray-400 hover:text-gray-600 transition duration-200 focus:outline-none ml-4 text-lg">
-                ✕
-            </button>
-        </div>
-    </div> -->
 
     <div id="custom-alert" class="hidden">
         <div id="alert-box">

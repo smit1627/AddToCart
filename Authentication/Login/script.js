@@ -1,4 +1,6 @@
 const form = document.getElementById("login-form");
+const loader = document.querySelector(".loader")
+loader.style.display = "flex";
 form.addEventListener("submit", function (e) {
     e.preventDefault();
     const email = document.getElementById("email").value;
@@ -9,39 +11,42 @@ form.addEventListener("submit", function (e) {
 
 
     // checking if user is registered
-    if (user) {
+    setTimeout(() => {
+        if (user) {
+            const currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
+            // creating current user credential
+            const currentUserCredential = [{
+                firstName: user.firstName,
+                email: email,
+                password: password
+            }]
 
-        const currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
-        // creating current user credential
-        const currentUserCredential = [{
-            firstName: user.firstName,
-            email: email,
-            password: password
-        }]
-
-        // checking if user already logged in
-        const currentUserData = currentUser.find(user => user.email === email && user.password === password);
-        // console.log(currentUserData, "currentUserData");
-        if (currentUserData) {
-            showAlert("error", "User already logged in");
+            // checking if user already logged in
+            const currentUserData = currentUser.find(user => user.email === email && user.password === password);
+            // console.log(currentUserData, "currentUserData");
+            if (currentUserData) {
+                showAlert("error", "User already logged in");
+            } else {
+                // saving current user credential in local storage
+                // currentUser.push(currentUserCredential);
+                localStorage.setItem("currentUser", JSON.stringify(currentUserCredential));
+                showAlert("success", "User logged in successfully");
+                user.status = "active";
+                users.push(user);
+                users.splice(users.indexOf(user), 1);
+                localStorage.setItem("users", JSON.stringify(users));
+                // Redirect after a slight delay to ensure data is saved
+                setTimeout(function () {
+                    window.location.href = "../../Home/index.html";
+                }, 500);
+            }
         } else {
-            // saving current user credential in local storage
-            // currentUser.push(currentUserCredential);
-            localStorage.setItem("currentUser", JSON.stringify(currentUserCredential));
-            showAlert("success", "User logged in successfully");
-            user.status = "active";
-            users.push(user);
-            users.splice(users.indexOf(user), 1);
-            localStorage.setItem("users", JSON.stringify(users));
-            // Redirect after a slight delay to ensure data is saved
-            setTimeout(function () {
-                window.location.href = "../../Home/index.html";
-            }, 500);
+            showAlert("error", "Invalid credentials");
         }
-    } else {
-        showAlert("error", "Invalid credentials");
-    }
+    }, 1000)
+
 })
+loader.style.display = "none";
 function showAlert(type, message) {
     const alertBox = document.getElementById("custom-alert");
     const alertInnerBox = document.getElementById("alert-box");

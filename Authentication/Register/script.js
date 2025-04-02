@@ -20,7 +20,7 @@ function toggleConfirmPassword() {
 }
 
 const form = document.getElementById("register-form");
-
+// const users = JSON.parse(localStorage.getItem("users")) || [];
 form.addEventListener("submit", function (e) {
     e.preventDefault();
 

@@ -320,6 +320,104 @@
                 animation-timing-function: ease-in;
             }
         }
+
+
+        /* Alert Container */
+        #custom-alert {
+            position: fixed;
+            top: 85px;
+            /* Increased from 20px to 50px */
+            left: 57.5%;
+            transform: translateX(-50%);
+            width: auto;
+            min-width: 280px;
+            max-width: 450px;
+            z-index: 9999;
+        }
+
+
+        /* Alert Box Style */
+        #alert-box {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            background-color: #22c55e;
+            color: #fff;
+            font-size: 1rem;
+            border-radius: 50px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Icon Style */
+        .alert-icon {
+            width: 28px;
+            height: 28px;
+            margin-right: 12px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .alert-icon svg {
+            width: 16px;
+            height: 16px;
+            color: #22c55e;
+        }
+
+        /* Alert Message */
+        .alert-content {
+            font-weight: 500;
+            flex-grow: 1;
+        }
+
+        /* Close Button */
+        .alert-close {
+            font-size: 1.2rem;
+            margin-left: 12px;
+            cursor: pointer;
+            color: #fff;
+            transition: transform 0.2s ease;
+        }
+
+        .alert-close:hover {
+            transform: scale(1.1);
+        }
+
+        /* Show & Hide Animations */
+        .show-alert {
+            animation: slideDownFade 0.3s ease-out forwards;
+        }
+
+        .hide-alert {
+            animation: slideUpFade 0.3s ease-in forwards;
+        }
+
+        @keyframes slideDownFade {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        @keyframes slideUpFade {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -20px);
+            }
+        }
     </style>
 </head>
 
@@ -396,6 +494,14 @@
         <p>© 2025 Product Dashboard. All Rights Reserved.</p>
     </footer>
 
+    <div id="custom-alert" class="hidden">
+        <div id="alert-box">
+            <div class="alert-icon" id="alert-icon"></div>
+            <div class="alert-content" id="alert-message">Success Message</div>
+            <div class="alert-close" onclick="closeAlert()">×</div>
+        </div>
+    </div>
+
     <!-- Product Details Modal -->
     <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -410,13 +516,14 @@
                             <img id="modalProductImage" src="" class="img-fluid rounded" alt="Product Image">
                         </div>
                         <div class="col-md-6">
-                            <h4 id="modalProductTitle"></h4>
-                            <p id="modalProductDescription"></p>
-                            <h5 class="text-success" id="modalProductPrice"></h5>
-                            <p><strong>Rating:</strong> <span id="modalProductRating"></span></p>
-                            <p><strong>Warranty:</strong> <span id="modalProductWarranty"></span></p>
-                            <p><strong>Discount:</strong> <span id="modalProductDiscount"></span></p>
-                            <p><strong>Return Policy:</strong> <span id="modalProductReturnPolicy"></span></p>
+                            <h4 id="modalProductTitle" class="fs-3 fw-bold pb-3"></h4>
+                            <p id="modalProductDescription" class="pb-5"></p>
+                            <h5 class="text-success pb-2" id="modalProductPrice"></h5>
+                            <p class="pb-2"><strong>Rating:</strong> <span id="modalProductRating"></span></p>
+                            <p class="pb-2"><strong>Warranty:</strong> <span id="modalProductWarranty"></span></p>
+                            <p class="pb-2"><strong>Discount:</strong> <span id="modalProductDiscount"></span></p>
+                            <p><strong>Return Policy:</strong> <span id="modalProductReturnPolicy"></span>
+                            </p>
                             <div class="d-flex gap-2 mt-3 py-4">
                                 <button class="btn btn-outline-success w-50" id="modalAddToCart">
                                     <i class="fas fa-cart-plus"></i> Add to Cart
@@ -427,16 +534,10 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <hr>
-                    <h5>Reviews</h5>
-                    <ul id="modalProductReviews" class="list-unstyled">
-                        Reviews will be dynamically added here
-                    </ul> -->
                 </div>
             </div>
         </div>
     </div>
-
 
     <script src="script.js"></script>
     <!-- Bootstrap Bundle -->

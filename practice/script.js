@@ -35,7 +35,7 @@ function show() {
                     <p class="card-text text-truncate" title="${product.description}">${product.description}</p>
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <span class="price-tag">$${product.price}</span>
-                        <span class="badge bg-primary">In stock</span>
+                        <span class="badge bg-primary">In Stock</span>
                     </div>
                     <div class="d-flex gap-2 modal-body">
                         <button class="btn btn-outline-success btn-sm btn-custom w-50 d-flex align-items-center justify-content-center gap-1" onclick="handleCart(${index})">
